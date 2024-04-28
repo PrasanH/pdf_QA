@@ -27,14 +27,20 @@ def main():
     if "chat_history" not in st.session_state:
         st.session_state.chat_history = None
 
-    st.header("Your documents")
+    st.header("Upload your documents and start questioning")
     uploaded_docs = st.file_uploader(
-        "Upload your pdfs/docx and click on process",
+        "Upload your **pdfs/docx**,type your question and click on process",
         accept_multiple_files=True,
-        type=["pdf"],
+        type=["pdf", "docx"],
     )
 
     user_question = st.text_input("Type your question")
+
+    model = st.selectbox(
+        label="Select model",
+        options=["gpt-3.5-turbo", "gpt-4-turbo"],
+        # first entry is deafult
+    )
 
     if st.button("Process"):
 
@@ -54,7 +60,7 @@ def main():
         #### create conversation chain
 
         # st.session_state.conversation = get_convo_chain(vectorstore)
-        conversation = llm_utils.get_convo_chain(vectorstore)
+        conversation = llm_utils.get_convo_chain(vectorstore, model)
         # session state so that even if streamlit refreshes this variable should not be reintialized.
         # we can also use it outside loops
 

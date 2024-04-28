@@ -24,11 +24,11 @@ def get_text_from_documents(uploaded_docs):
     for uploaded_doc in uploaded_docs:
 
         if ".pdf" in uploaded_doc.name:
-            pdf_reader = PdfReader(uploaded_doc.read())
+            pdf_reader = PdfReader(uploaded_doc)
             for page in pdf_reader.pages:
                 text += page.extract_text()
         elif ".docx" in uploaded_doc.name:
-            docx_text = extract_text_from_docx(uploaded_doc.read())
+            docx_text = extract_text_from_docx(uploaded_doc)
             text += docx_text
     return text
 
@@ -61,8 +61,8 @@ def get_vectorstore(text_chunks):
     return vectorstore
 
 
-def get_convo_chain(vectorstore):
-    llm = ChatOpenAI()
+def get_convo_chain(vectorstore, model="gpt-3.5-turbo"):
+    llm = ChatOpenAI(model=model)
     """
     llm = HuggingFaceHub(
         repo_id="google/flan-t5-xxl",
