@@ -83,6 +83,6 @@ def handle_user_input(user_question, conversation):
 
     for i, message in enumerate(st.session_state.chat_history):
         if i % 2 == 0:
-            st.write(message.content)
+            st.write("**Question:**", message.content)
         else:
-            st.write(message.content)
+            st.write("**Response:**", message.content)

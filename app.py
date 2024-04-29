@@ -21,20 +21,18 @@ def main():
 
     st.set_page_config(page_title="Chat with PDFs", page_icon=":books:")
 
-    # if "conversation" not in st.session_state:
-    # st.session_state.conversation = None
+    if "conversation" not in st.session_state:
+        st.session_state.conversation = None
 
     if "chat_history" not in st.session_state:
         st.session_state.chat_history = None
 
-    st.header("Upload your documents and start questioning")
+    st.header("Upload your documents, click on process and start questioning")
     uploaded_docs = st.file_uploader(
         "Upload your **pdfs/docx**,type your question and click on process",
         accept_multiple_files=True,
         type=["pdf", "docx"],
     )
-
-    user_question = st.text_input("Type your question")
 
     model = st.selectbox(
         label="Select model",
@@ -59,13 +57,18 @@ def main():
 
         #### create conversation chain
 
-        # st.session_state.conversation = get_convo_chain(vectorstore)
-        conversation = llm_utils.get_convo_chain(vectorstore, model)
+        st.session_state.conversation = llm_utils.get_convo_chain(vectorstore, model)
+        # conversation = llm_utils.get_convo_chain(vectorstore, model)
         # session state so that even if streamlit refreshes this variable should not be reintialized.
         # we can also use it outside loops
 
-        if user_question:
-            llm_utils.handle_user_input(user_question, conversation)
+        # if user_question:
+        # llm_utils.handle_user_input(user_question, conversation)
+
+    user_question = st.text_input("Type your question")
+
+    if user_question:
+        llm_utils.handle_user_input(user_question, st.session_state.conversation)
 
 
 if __name__ == "__main__":
