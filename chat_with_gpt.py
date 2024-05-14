@@ -13,9 +13,9 @@ st.header(":robot_face: Chat with JARVIS")
 
 
 pre_defined_content = [
-    "You are a Intelligent assistant who is good at explaining things in a simple way",
-    "You are a Intelligent assistant who is good at programming",
-    "You are the most intelligent person ever",
+    "You are an Intelligent assistant who is good at explaining things in a simple way",
+    "You are an Intelligent assistant who is good at programming",
+    "You are the most intelligent assistant who can solve anything",
 ]
 
 my_content = st.selectbox(
@@ -34,7 +34,9 @@ messages = [
         "content": my_content,
     },
 ]
-model = st.selectbox(label="Select model", options=["gpt-3.5-turbo", "gpt-4-turbo"])
+model = st.selectbox(
+    label="Select model", options=["gpt-3.5-turbo", "gpt-4-turbo", "gpt-4o"]
+)
 
 
 question = st.text_input(":red[Type your question]")
