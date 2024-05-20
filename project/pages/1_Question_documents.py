@@ -1,5 +1,5 @@
 import streamlit as st
-import llm_utils
+import app_utils.llm_utils as llm_utils
 from dotenv import load_dotenv
 from PyPDF2 import PdfReader
 from langchain.text_splitter import CharacterTextSplitter
@@ -19,7 +19,7 @@ def main():
 
     load_dotenv()  #### to read the .env file where you have stored the api keys
 
-    st.set_page_config(page_title="Chat with PDFs", page_icon=":books:")
+    st.set_page_config(page_title="Chat with PDFs/docs", page_icon=":books:")
 
     if "conversation" not in st.session_state:
         st.session_state.conversation = None
@@ -27,7 +27,7 @@ def main():
     if "chat_history" not in st.session_state:
         st.session_state.chat_history = None
 
-    st.header("Upload your documents, click on process and start questioning")
+    st.header(":books: Upload your documents, click on process and start questioning")
     uploaded_docs = st.file_uploader(
         "Upload your **pdfs/docx**,type your question and click on process",
         accept_multiple_files=True,
@@ -36,7 +36,7 @@ def main():
 
     model = st.selectbox(
         label="Select model",
-        options=["gpt-3.5-turbo", "gpt-4-turbo"],
+        options=["gpt-4o", "gpt-3.5-turbo", "gpt-4-turbo"],
         # first entry is deafult
     )
 
