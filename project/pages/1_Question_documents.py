@@ -36,7 +36,7 @@ def main():
 
     model = st.selectbox(
         label="Select model",
-        options=["gpt-4o", "gpt-3.5-turbo", "gpt-4-turbo"],
+        options=["gpt-4o", "gpt-3.5-turbo", "gpt-4-turbo", "gpt-4o"],
         # first entry is deafult
     )
 
