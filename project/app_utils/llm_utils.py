@@ -19,6 +19,15 @@ load_dotenv()
 
 
 def get_text_from_documents(uploaded_docs):
+    """
+    Functions returns text chunks for the uploaded files (.pdf or .docx)
+
+    Args:
+        uploaded_docs (_type_): _description_
+
+    Returns:
+        _type_: text chunks (RAW text chunks)
+    """
     st.write(uploaded_docs)
     text = ""
     for uploaded_doc in uploaded_docs:
@@ -42,6 +51,15 @@ def extract_text_from_docx(docx_file):
 
 
 def get_text_chunks(raw_text):
+    """
+    function returns list of text chunks from raw text
+    Here, we can specify the chunk size, overlap and the length function
+    Args:
+        raw_text (_type_): _description_
+
+    Returns:
+        _type_: list of text chunks
+    """
     text_splitter = CharacterTextSplitter(
         separator="\n",
         chunk_size=1000,  # char size
@@ -53,7 +71,17 @@ def get_text_chunks(raw_text):
     return chunks
 
 
-def get_vectorstore(text_chunks):
+
+def get_vectorstore(text_chunks:list):
+    """
+    Function returns vectorstore from FAISS from list of text chunks
+
+    Args:
+        text_chunks (list): _description_
+
+    Returns:
+        _type_: _description_
+    """
     embeddings = OpenAIEmbeddings()
     # embeddings = HuggingFaceInstructEmbeddings(model_name="hkunlp/instructor-xl")
     vectorstore = FAISS.from_texts(texts=text_chunks, embedding=embeddings)
@@ -61,7 +89,19 @@ def get_vectorstore(text_chunks):
     return vectorstore
 
 
+
 def get_convo_chain(vectorstore, model="gpt-3.5-turbo"):
+    """
+    Function returns conversation chain
+
+    Args:
+        vectorstore: 
+        model: default model is "gpt-3.5-turbo", if nothing is passed
+
+    Returns:
+        _type_: 
+    """
+
     llm = ChatOpenAI(model=model)
     """
     llm = HuggingFaceHub(
