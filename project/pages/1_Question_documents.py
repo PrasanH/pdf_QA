@@ -38,7 +38,8 @@ def main():
     model = st.selectbox(
         label="Select model",
         options=["gpt-4o", "gpt-4o-mini" ,"gpt-3.5-turbo", "gpt-4-turbo"],
-        # first entry is deafult
+        index=1,
+        
     )
 
     if st.button("Process"):
