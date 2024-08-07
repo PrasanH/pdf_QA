@@ -1,7 +1,7 @@
 project/.env
 111.py
 jarvis.jpg
-project\app_utils\__pycache__\
-
-
+project/app_utils/__pycache__/*
+Jarvis.bat
+*__pycache__/
 
