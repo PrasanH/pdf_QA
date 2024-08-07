@@ -33,6 +33,7 @@ def main():
         accept_multiple_files=True,
         type=["pdf", "docx"],
     )
+    
 
     model = st.selectbox(
         label="Select model",
@@ -50,10 +51,11 @@ def main():
         ####get  text chunks
 
         text_chunks = llm_utils.get_text_chunks(raw_text)
-        # st.write(text_chunks)
+        #st.write(text_chunks)
 
         ####create vector store
         vectorstore = llm_utils.get_vectorstore(text_chunks)
+        
 
         #### create conversation chain
 

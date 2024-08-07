@@ -2,9 +2,13 @@ import os
 import openai
 from dotenv import load_dotenv
 import streamlit as st
+from openai import OpenAI
 
 load_dotenv()
-openai.api_key = os.getenv("OPENAI_API_KEY")
+#openai.api_key = os.getenv("OPENAI_API_KEY")
+
+my_api_key = os.getenv("OPENAI_API_KEY")
+client = OpenAI(api_key = my_api_key)
 
 
 st.set_page_config(page_title="Chat with JARVIS", page_icon=":robot_face:")
@@ -46,8 +50,10 @@ if message:
     messages.append(
         {"role": "user", "content": message},
     )
-chat = openai.ChatCompletion.create(model=model, messages=messages)
+
+chat = client.chat.completions.create(model=model, messages=messages)
 reply = chat.choices[0].message.content
+
 if reply:
     st.write(f":robot_face:  {reply}")
 print(f"JARVIS: {reply}")
