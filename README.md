@@ -5,7 +5,7 @@ To get Answers to questions from a pdf
 
 
 #chat with GPT
-![Alt-Text](Docs/Images/chat_with_jarvis.PNG)
+![Alt-Text](Docs/Images/jarvis_comparison.png)
 
 
 Commonly used roles include “system,” “user,” and “assistant.”
