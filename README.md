@@ -1,5 +1,5 @@
 # pdf_QA
-To get question and answers from a pdf
+To get Answers to questions from a pdf
 
 ![Alt-Text](Docs/Images/question_doc.PNG)
 
