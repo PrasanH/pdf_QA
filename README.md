@@ -5,7 +5,7 @@
 ![Alt-Text](Docs/Images/question_doc.PNG)
 
 
-#chat with JARVIS 
+# Chat with JARVIS 
 - Available models: gpt-4o, gpt-4omini, gpt-4-turbo
 - Select among available content or type your own content
   
