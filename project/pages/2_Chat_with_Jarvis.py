@@ -24,6 +24,8 @@ pre_defined_content = [
     "You are the most intelligent assistant who can solve anything",
     "Answer in minimum words as possible",
     "Answer in minimum words as possible with reasoning",
+    "You are an expert in English language. Rephrase this sentence",
+    "Check the grammar and rephrase if required. You are also allowed to improvise",
 ]
 
 my_content = st.selectbox(
