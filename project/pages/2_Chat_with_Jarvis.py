@@ -24,7 +24,7 @@ pre_defined_content = [
     "You are the most intelligent assistant who can solve anything",
     "Answer in minimum words as possible",
     "Answer in minimum words as possible with reasoning",
-    "You are an expert in English language. Rephrase this sentence",
+    "You are a Scientific research student. Rephrase this sentence to avoid plagiarism",
     "Check the grammar and rephrase if required. You are also allowed to improvise",
 ]
 
@@ -54,7 +54,8 @@ model = st.selectbox(
 
 question = st.text_input(":red[Type your question]")
 message = f"User : {question}"
-if message:
+
+if question:
     st.session_state.chat_history_jarvis.append(
         {"role": "user", "content": message},
     )

@@ -51,6 +51,12 @@ my_content = st.selectbox(
     options=pre_defined_content,
 )
 
+with st.expander(label="Type your content if needed", expanded=False):
+    typed_content = st.text_input("type your content")
+
+if typed_content:
+    my_content = typed_content
+
 model = st.selectbox(
     label="Select model",
     options=["gpt-4o", "gpt-4o-mini", "gpt-3.5-turbo", "gpt-4-turbo"],
@@ -91,4 +97,15 @@ if uploaded_img:
 
     response = requests.post("https://api.openai.com/v1/chat/completions", headers=headers, json=payload)
 
-    st.write(response.json())
+    data = response.json()
+    #st.write(data)
+    choices = data.get("choices", [])
+
+    if choices:
+        short_response_text = choices[0].get("message", {}).get("content", "No content")
+        #print("Completion:", completion_text)
+        
+    else:
+        print(f"Error: {response.status_code}, {response.text}")
+
+    st.write(short_response_text)
