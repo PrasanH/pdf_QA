@@ -32,7 +32,7 @@ my_content = st.selectbox(
     label=" :red[Content]",
     options=pre_defined_content,
 )
-with st.expander(label="Type your content if needed", expanded=False):
+with st.expander(label="Type your content if needed :point_down:", expanded=False):
     typed_content = st.text_input("type your content")
 
 if typed_content:
@@ -46,7 +46,7 @@ st.session_state.chat_history_jarvis.append(
     },
 )
 model = st.selectbox(
-    label="Select model",
+    label=":blue[Select model]",
     options=["gpt-4o", "gpt-4o-mini", "gpt-3.5-turbo", "gpt-4-turbo"],
     index = 1,
 )

@@ -36,7 +36,7 @@ def main():
     
 
     model = st.selectbox(
-        label="Select model",
+        label=":blue[Select model]",
         options=["gpt-4o", "gpt-4o-mini" ,"gpt-3.5-turbo", "gpt-4-turbo"],
         index=1,
         
@@ -65,10 +65,8 @@ def main():
         # session state so that even if streamlit refreshes this variable should not be reintialized.
         # we can also use it outside loops
 
-        # if user_question:
-        # llm_utils.handle_user_input(user_question, conversation)
 
-    user_question = st.text_input("Type your question")
+    user_question = st.text_input(":blue[Type your question]")
 
     if user_question:
         llm_utils.handle_user_input(user_question, st.session_state.conversation)

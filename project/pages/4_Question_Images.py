@@ -29,7 +29,12 @@ def encode_image(uploaded_image):
     return base64.b64encode(image_bytes).decode('utf-8')
     
 def display_uploaded_image(uploaded_image):
-    #image_bytes = uploaded_image.read()
+    """
+    Displays the uploaded image from the user
+
+    Args:
+        uploaded_image (_type_): The uploaded image file from Streamlit.
+    """
     image = Image.open(uploaded_img)
     st.image(image)
 
@@ -40,18 +45,17 @@ uploaded_img = st.file_uploader(
         type=["jpg",'png','JPG', 'PNG', 'jpeg'],
     )
 
-
-    
 pre_defined_content = [
     'Write this equation in latex equation mode',
     'Explain what is in the image with reasoning',
 ]
+
 my_content = st.selectbox(
     label=" :red[Content]",
     options=pre_defined_content,
 )
 
-with st.expander(label="Type your content if needed", expanded=False):
+with st.expander(label="Type your content if needed :point_down:", expanded=False):
     typed_content = st.text_input("type your content")
 
 if typed_content:
@@ -98,7 +102,7 @@ if uploaded_img:
     response = requests.post("https://api.openai.com/v1/chat/completions", headers=headers, json=payload)
 
     data = response.json()
-    #st.write(data)
+
     choices = data.get("choices", [])
 
     if choices:
