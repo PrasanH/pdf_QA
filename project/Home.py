@@ -2,7 +2,7 @@ import streamlit as st
 
 st.set_page_config(page_title="Hello Jarvis", page_icon=":robot_face:")
 
-st.title("Hello Sir, How Can I help you today? :sunglasses:")
+st.title("Hello Sir, How Can I Help You Today? :sunglasses:")
 st.write('### :point_left: Please select app page from the left')
 
 st.write(':blue[1. Question documents:] Ask questions on your multiple or single PDF/docx files.')
