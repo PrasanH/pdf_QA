@@ -3,10 +3,10 @@ import openai
 from dotenv import load_dotenv
 import streamlit as st
 from openai import OpenAI
-import base64
 import requests
-from PIL import Image
 
+
+import app_utils.llm_utils as llm_utils
 
 load_dotenv()
 
@@ -16,27 +16,8 @@ client = OpenAI(api_key = my_api_key)
 st.set_page_config(page_title="Chat with JARVIS", page_icon=":robot_face:")
 st.header(":robot_face: Chat with JARVIS on Images :frame_with_picture:")
 
-def encode_image(uploaded_image):
-    """Encodes an uploaded image to base64
 
-    Args:
-        uploaded_image (UploadedFile): The uploaded image file from Streamlit.
-
-    Returns:
-        str: Base64 encoded string of the image
-    """
-    image_bytes = uploaded_image.read()
-    return base64.b64encode(image_bytes).decode('utf-8')
     
-def display_uploaded_image(uploaded_image):
-    """
-    Displays the uploaded image from the user
-
-    Args:
-        uploaded_image (_type_): The uploaded image file from Streamlit.
-    """
-    image = Image.open(uploaded_img)
-    st.image(image)
 
 
 uploaded_img = st.file_uploader(
@@ -69,8 +50,8 @@ model = st.selectbox(
 
 if uploaded_img:
 
-    base64_image = encode_image(uploaded_img)
-    display_uploaded_image(uploaded_img)
+    base64_image = llm_utils.encode_image(uploaded_img)
+    st.image(llm_utils.display_uploaded_image(uploaded_img))
 
     headers = {
     "Content-Type": "application/json",
