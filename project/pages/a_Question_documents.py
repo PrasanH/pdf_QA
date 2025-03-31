@@ -3,14 +3,14 @@ import app_utils.llm_utils as llm_utils
 from dotenv import load_dotenv
 from PyPDF2 import PdfReader
 from langchain.text_splitter import CharacterTextSplitter
-from langchain.embeddings import HuggingFaceInstructEmbeddings
+from langchain_community.embeddings import HuggingFaceInstructEmbeddings
 
 # OpenAIEmbeddings,
-from langchain.vectorstores import FAISS
+from langchain_community.vectorstores import FAISS
 from langchain.memory import ConversationBufferMemory
 from langchain.chains import ConversationalRetrievalChain  ### to chat with our text
-from langchain.chat_models import ChatOpenAI
-from langchain.llms import HuggingFaceHub
+from langchain_community.chat_models import ChatOpenAI
+from langchain_community.llms import HuggingFaceHub
 
 # from InstructorEmbedding import INSTRUCTOR
 
@@ -36,7 +36,7 @@ def main():
     
 
     model = st.selectbox(
-        label="Select model",
+        label=":blue[Select model]",
         options=["gpt-4o", "gpt-4o-mini" ,"gpt-3.5-turbo", "gpt-4-turbo"],
         index=1,
         
@@ -54,7 +54,7 @@ def main():
         text_chunks = llm_utils.get_text_chunks(raw_text)
         #st.write(text_chunks)
 
-        ####create vector store
+        ####create vector store or database
         vectorstore = llm_utils.get_vectorstore(text_chunks)
         
 
@@ -65,10 +65,8 @@ def main():
         # session state so that even if streamlit refreshes this variable should not be reintialized.
         # we can also use it outside loops
 
-        # if user_question:
-        # llm_utils.handle_user_input(user_question, conversation)
 
-    user_question = st.text_input("Type your question")
+    user_question = st.text_input(":blue[Type your question]")
 
     if user_question:
         llm_utils.handle_user_input(user_question, st.session_state.conversation)

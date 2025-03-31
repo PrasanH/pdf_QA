@@ -15,5 +15,12 @@
   ![Alt-Text](Docs/Images/chat_with_jarvis_image.png)
 
 
+#Question Images
+![Alt-Text](Docs/Images/chat_with_images.PNG)
 
+
+
+
+Image related info 
+https://platform.openai.com/docs/guides/vision
 

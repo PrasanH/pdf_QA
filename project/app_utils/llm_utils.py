@@ -2,18 +2,25 @@ import streamlit as st
 from dotenv import load_dotenv
 from PyPDF2 import PdfReader
 from langchain.text_splitter import CharacterTextSplitter
-from langchain.embeddings import HuggingFaceInstructEmbeddings, OpenAIEmbeddings
-
+from langchain_community.embeddings import OpenAIEmbeddings, HuggingFaceInstructEmbeddings
 # OpenAIEmbeddings,
-from langchain.vectorstores import FAISS
+from langchain_community.vectorstores import FAISS
 from langchain.memory import ConversationBufferMemory
 from langchain.chains import ConversationalRetrievalChain  ### to chat with our text
-from langchain.chat_models import ChatOpenAI
-from langchain.llms import HuggingFaceHub
+#from langchain.chat_models import ChatOpenAI
+from langchain_community.chat_models import ChatOpenAI
+
+from langchain_community.llms import HuggingFaceHub
 
 # from InstructorEmbedding import INSTRUCTOR
 from docx import Document
 import os
+
+import base64
+from PIL import Image
+
+
+
 
 load_dotenv()
 
@@ -76,6 +83,10 @@ def get_vectorstore(text_chunks:list):
     """
     Function returns vectorstore from FAISS from list of text chunks
 
+    For embedding, we use OpenAI embediing model( default)
+    
+    Then, we use FAISS to create a vector store using the embedding model. ie. vector store where our text chunks are represented as numbers.
+
     Args:
         text_chunks (list): _description_
 
@@ -126,3 +137,28 @@ def handle_user_input(user_question, conversation):
             st.write("**Question:**", message.content)
         else:
             st.write("**Response:**", message.content)
+
+
+def encode_image(uploaded_image):
+    """Encodes an uploaded image to base64
+
+    Args:
+        uploaded_image (UploadedFile): The uploaded image file from Streamlit.
+
+    Returns:
+        str: Base64 encoded string of the image
+    """
+    image_bytes = uploaded_image.read()
+    return base64.b64encode(image_bytes).decode('utf-8')
+    
+
+
+def display_uploaded_image(uploaded_image):
+    """
+    Displays the uploaded image from the user
+
+    Args:
+        uploaded_image (_type_): The uploaded image file from Streamlit.
+    """
+    image_to_display = Image.open(uploaded_image)
+    return image_to_display

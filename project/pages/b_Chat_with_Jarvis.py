@@ -14,37 +14,39 @@ st.set_page_config(page_title="Chat with JARVIS", page_icon=":robot_face:")
 
 st.header(":robot_face: Chat with JARVIS")
 
-if "chat_history" not in st.session_state:
-        st.session_state.chat_history = []
+if "chat_history_jarvis" not in st.session_state:
+        st.session_state.chat_history_jarvis = []
 
 
 pre_defined_content = [
     "You are an Intelligent assistant who is good at explaining things in a simple way",
-    "You are an Intelligent assistant who is good at programming",
+    "You are an expert in programming",
     "You are the most intelligent assistant who can solve anything",
-    "answer in minimum words as possible",
-    "answer in minimum words as possible with reasoning",
+    "Answer in minimum words as possible",
+    "Answer in minimum words as possible with reasoning",
+    "You are a Scientific research student. Rephrase this sentence to avoid plagiarism",
+    "Check the grammar and rephrase if required. You are also allowed to improvise",
 ]
 
 my_content = st.selectbox(
     label=" :red[Content]",
     options=pre_defined_content,
 )
-with st.expander(label="Type your content if needed", expanded=False):
+with st.expander(label="Type your content if needed :point_down:", expanded=False):
     typed_content = st.text_input("type your content")
 
 if typed_content:
     my_content = typed_content
 
 
-st.session_state.chat_history.append(
+st.session_state.chat_history_jarvis.append(
     {
         "role": "system",
         "content": my_content,
     },
 )
 model = st.selectbox(
-    label="Select model",
+    label=":blue[Select model]",
     options=["gpt-4o", "gpt-4o-mini", "gpt-3.5-turbo", "gpt-4-turbo"],
     index = 1,
 )
@@ -52,16 +54,20 @@ model = st.selectbox(
 
 question = st.text_input(":red[Type your question]")
 message = f"User : {question}"
-if message:
-    st.session_state.chat_history.append(
+
+if question:
+    st.session_state.chat_history_jarvis.append(
         {"role": "user", "content": message},
     )
-    chat = client.chat.completions.create(model=model, messages=st.session_state.chat_history)
+    chat = client.chat.completions.create(model=model, messages=st.session_state.chat_history_jarvis)
 
     reply = chat.choices[0].message.content
 
     if reply:
         st.write(f":robot_face:  {reply}")
     print(f"JARVIS: {reply}")
-    st.session_state.chat_history.append({"role": "assistant", "content": reply})
+    st.session_state.chat_history_jarvis.append({"role": "assistant", "content": reply})
     
+
+
+
