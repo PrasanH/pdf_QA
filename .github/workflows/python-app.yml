@@ -15,7 +15,7 @@ permissions:
 jobs:
   test:
     #container provided by github
-    runs-on: ubuntu-latest
+    runs-on: windows-latest
   
 
     steps:
