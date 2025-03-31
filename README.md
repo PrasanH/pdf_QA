@@ -1,4 +1,7 @@
-# pdf_QA
+# Multi page LLM App
+![Alt-Text](Docs/Images/app_start.PNG)
+
+# pdf_QA (RAG)
 - To get Answers to questions from a pdf
 - Has memory
 
@@ -12,12 +15,11 @@
 
 # Chat with JARVIS on Images 
 - Question Images
-  ![Alt-Text](Docs/Images/chat_with_jarvis_image.png)
+![Alt-Text](Docs/Images/chat_with_jarvis_image.png)
 
 
-#Question Images
+- Question Images
 ![Alt-Text](Docs/Images/chat_with_images.PNG)
-
 
 
 
