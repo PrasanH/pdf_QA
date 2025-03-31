@@ -17,7 +17,7 @@ Just inputs a question
 
 def test_chat_function():
     
-    at = AppTest.from_file('pages/b_Chat_with_Jarvis.py').run()
+    at = AppTest.from_file('../pages/b_Chat_with_Jarvis.py').run()
     try:
         #select a value from the first dropdown(selectbox)
         at.selectbox[0].set_value("You are an expert in programming").run()
