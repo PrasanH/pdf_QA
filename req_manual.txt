@@ -1,0 +1,11 @@
+langchain==0.2.12
+langchain-community
+openai==1.40.0
+PyPDF2==3.0.1
+python-dotenv==1.0.1
+python_docx==1.1.0
+streamlit==1.18.1   ( altair==4.2.2 ) 
+tiktoken 
+faiss-cpu / faiss-gpu
+PIL 
+
