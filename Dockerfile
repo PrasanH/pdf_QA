@@ -26,7 +26,7 @@ CMD [ "streamlit", "run", "Home.py" ]
 
 # create a .dockerignore and add files like .env, .trunk etc
 
-# run--->  docker build -t image_name .  (including the dot. dot . tells Docker to use the current directory as the context. )
+# run--->  docker build -t image_name .  --builds a docker image (including the dot. dot . tells Docker to use the current directory as the context. )
 # Note!!!! Without dot, you get error:  'docker buildx build' requires 1 argument
 
 # then -->  docker run -it -p 99:8501 chat_jarvis  (select any port like 99 for PORT MAPPING)
