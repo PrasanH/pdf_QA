@@ -1,0 +1,5 @@
+project/.env
+.trunk
+__pycache__/
+*.pyc 
+*.pyo
