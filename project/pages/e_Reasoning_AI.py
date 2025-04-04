@@ -21,7 +21,7 @@ model = st.selectbox(
 )
 
 
-my_content = st.text_input(":red[Type your question]")
+my_content = st.text_area(":red[Type your question]")
 text_to_append = "Answer in brief"
 #o1 models are expensive. to reduce the token size we will prefer the brief answers
 

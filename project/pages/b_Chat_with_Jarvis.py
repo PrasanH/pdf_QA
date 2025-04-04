@@ -52,7 +52,7 @@ model = st.selectbox(
 )
 
 
-question = st.text_input(":red[Type your question]")
+question = st.text_area(":red[Type your question]")
 message = f"User : {question}"
 
 if question:

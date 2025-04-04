@@ -37,7 +37,7 @@ my_content = st.selectbox(
 )
 
 with st.expander(label="Type your content if needed :point_down:", expanded=False):
-    typed_content = st.text_input("type your content")
+    typed_content = st.text_area("type your content")
 
 if typed_content:
     my_content = typed_content
